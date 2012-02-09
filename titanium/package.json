@@ -1,0 +1,5 @@
+{ "name": "titanium"
+, "description": "Appcelerator Titanium CLI package"
+, "version": "0.0.1"
+, "author": "Anthony A. Decena <adecena@appcelerator.com>"
+}
