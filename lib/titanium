@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+/**
+ * Dependencies
+ */
+
+var p = require('commander');
+p
+ .version('0.0.1')
+ .option('configure', 'CLI configuration options')
+ .parse(process.argv);
+
+if (p.configure) {
+	module.exports = require('./configure');
+}
