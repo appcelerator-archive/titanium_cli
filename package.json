@@ -1,6 +1,6 @@
 { "name": "titanium"
 , "description": "Appcelerator Titanium CLI package"
-, "version": "0.0.1"
+, "version": "0.0.2"
 , "author": "Anthony A. Decena <adecena@appcelerator.com>"
 , "main": "index"
 }
