@@ -7,7 +7,9 @@
 var p = require('commander');
 p
  .version('0.0.1')
+ .usage('This is default stuff')
  .option('configure', 'CLI configuration options')
+ .option('run', 'Run a project')
  .parse(process.argv);
 
 if (p.configure) {
