@@ -2,6 +2,15 @@
 	"name": "titanium", 
 	"description": "Appcelerator Titanium CLI package", 
 	"version": "0.0.2", 
+	"homepage": "https://github.com/appcelerator-titans/titanium_cli",
 	"author": "Appcelerator Dev Relations <community@appcelerator.com>", 
+	"dependencies": {
+		"commander": ">= 0.5.2",
+		"http-get": ">= 0.3.1"
+	},
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/appcelerator-titans/titanium_cli.git"
+    },
 	"main": "index"
 }
