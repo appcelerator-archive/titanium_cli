@@ -5,13 +5,20 @@
  */
 
 var p = require('commander');
-p
- .version('0.0.1')
- .usage('This is default stuff')
- .option('configure', 'CLI configuration options')
- .option('run', 'Run a project')
- .parse(process.argv);
 
 if (p.configure) {
 	module.exports = require('./configure');
 }
+
+p
+ .version('0.0.1')
+ .usage('This is default stuff');
+
+p
+ .command('run')
+ .description('Run a project on simulator/emulator')
+ .option('-p, --platform <platform>','the platform to target, one of "iphone", "ipad", "android"')
+ .option('-d, --directory [directory]','the project directory to use, default to current directory')
+ .action(require('./command_run').execute);
+
+p.parse(process.argv);
