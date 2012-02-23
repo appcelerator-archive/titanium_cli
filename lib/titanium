@@ -4,7 +4,8 @@
  * Dependencies
  */
 
-var p = require('commander');
+var p = require('commander'),
+	commands = require('./commands');
 
 if (p.configure) {
 	module.exports = require('./configure');
@@ -20,5 +21,4 @@ p
  .option('-p, --platform <platform>','the platform to target, one of "iphone", "ipad", "android"')
  .option('-d, --directory [directory]','the project directory to use, default to current directory')
  .action(require('./command_run').execute);
-
-p.parse(process.argv);
+//p.parse(process.argv);
