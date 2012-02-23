@@ -16,7 +16,6 @@ if (p.configure) {
 p.version('0.0.1').usage('This is default stuff').option('-v, --verbose [value]', 'display all logs');
 
 conf.propsLoaded(function() {
-	console.log('test');
 	p.command('run')
 	 .description('Run a project on simulator/emulator')
 	 .option('-p, --platform <platform>','the platform to target, one of "iphone", "ipad", "android"')
