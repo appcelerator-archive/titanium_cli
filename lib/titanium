@@ -4,21 +4,27 @@
  * Dependencies
  */
 
-var p = require('commander');
+var p = require('commander'),
+	commands = require('./commands');
+
+var conf = require('./configure');
 
 if (p.configure) {
-	module.exports = require('./configure');
+	module.exports = conf;
 }
 
-p
- .version('0.0.1')
- .usage('This is default stuff');
+p.version('0.0.1').usage('This is default stuff').option('-v, --verbose [value]', 'display all logs');
 
-p
- .command('run')
- .description('Run a project on simulator/emulator')
- .option('-p, --platform <platform>','the platform to target, one of "iphone", "ipad", "android"')
- .option('-d, --directory [directory]','the project directory to use, default to current directory')
- .action(require('./command_run').execute);
+conf.propsLoaded(function() {
+	p.command('run')
+	 .description('Run a project on simulator/emulator')
+	 .option('-p, --platform <platform>','the platform to target, one of "iphone", "ipad", "android"')
+	 .option('-d, --directory [directory]','the project directory to use, default to current directory')
+	 .action(require('./command_run').execute);
 
-p.parse(process.argv);
+	p.command('clean')
+	 .description('Clean your project dir')
+	 .option('-i, --ignore <platform>','dont clean for this platform, one of "iphone", "ipad", "android"')
+	 .action(require('./command_clean').execute);
+	 p.parse(process.argv);
+});
