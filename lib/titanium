@@ -13,7 +13,7 @@ if (p.configure) {
 	module.exports = conf;
 }
 
-p.version('0.0.1').usage('This is default stuff').option('-v, --verbose [value]', 'display all logs');
+p.version('0.0.2').usage('This is default stuff').option('-v, --verbose [value]', 'display all logs');
 
 conf.propsLoaded(function() {
 	p.command('run')
