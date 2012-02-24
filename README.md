@@ -18,13 +18,13 @@ This is more of a specification than documentation at the moment, but here goes:
 
 <table>
 	<tr>
-		<th><pre>titanium</pre></th>
+		<th>titanium</th>
 		<td>
 			<p>Display help text</p>
 		</td>
 	</tr>
 	<tr>
-		<th><pre>titanium configure</pre></th>
+		<th>titanium configure</th>
 		<td>
 			<p>Configure your mobile development environment</p>
 			<p>Arguments:</p>
@@ -34,7 +34,7 @@ This is more of a specification than documentation at the moment, but here goes:
 		</td>
 	</tr>
 	<tr>
-		<th><pre>titanium create [AppName]</pre></th>
+		<th>titanium create [AppName]</th>
 		<td>
 			<p>Create a mobile application by the given name</p>
 			<p>Arguments:</p>
@@ -44,7 +44,7 @@ This is more of a specification than documentation at the moment, but here goes:
 		</td>
 	</tr>
 	<tr>
-		<th><pre>titanium run [iphone, ipad, android]</pre></th>
+		<th>titanium run [iphone, ipad, android]</th>
 		<td>
 			<p>Run the Titanium project in the given sim/emulator</p>
 			<p>Arguments:</p>
@@ -54,7 +54,7 @@ This is more of a specification than documentation at the moment, but here goes:
 		</td>
 	</tr>
 	<tr>
-		<th><pre>titanium clean</pre></th>
+		<th>titanium clean</th>
 		<td>
 			<p>Clear Titanium project artifacts</p>
 			<p>Arguments:</p>
@@ -64,7 +64,7 @@ This is more of a specification than documentation at the moment, but here goes:
 		</td>
 	</tr>
 	<tr>
-		<th><pre>titanium deploy [iphone, android]</pre></th>
+		<th>titanium deploy [iphone, android]</th>
 		<td>
 			<p>Deploy an application to a connected device for development</p>
 			<p>Arguments:</p>
@@ -74,7 +74,7 @@ This is more of a specification than documentation at the moment, but here goes:
 		</td>
 	</tr>
 	<tr>
-		<th><pre>titanium package [iphone, android]</pre></th>
+		<th>titanium package [iphone, android]</th>
 		<td>
 			<p>Package an application for distribution to an app store</p>
 			<p>Arguments:</p>
