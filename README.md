@@ -28,26 +28,26 @@ Install all dependencies for the CLI by running `npm install` at the top level p
 * Require that file into the commands object created in `lib/commands/index.js` - this is required by the main CLI script
 * Implement a command module with the following interface:
 
-	exports.description = 'A string which describes your command'.
-	exports.help = function() {
-		//print text to the console explaining how your command works.  See the "clean" command for example.
-	};
-	exports.execute = function(config,args,logger) {
-		//execute your command.  The main driver script will call your function with:
-		//config: the global configuration object for the user - should eventually be created by "titanium configure"
+		exports.description = 'A string which describes your command'.
+		exports.help = function() {
+			//print text to the console explaining how your command works.  See the "clean" command for example.
+		};
+		exports.execute = function(config,args,logger) {
+			//execute your command.  The main driver script will call your function with:
+			//config: the global configuration object for the user - should eventually be created by "titanium configure"
 		
-		//args: the command line arguments passed to the script.  Examples:
-		//titanium run iphone >>> ['iphone']
-		//titanium run iphone -v >>> ['iphone', 'v']
-		//titanium create MyApp --verbose >>> ['MyApp', 'verbose']
-		//titanium create MyApp -d /Users/kevin -v --sdk /dev/ti-1.6 >>> ['MyApp', {d:'/Users/kevin'}, 'v', {sdk:'/dev/ti-1.6'}]
+			//args: the command line arguments passed to the script.  Examples:
+			//titanium run iphone >>> ['iphone']
+			//titanium run iphone -v >>> ['iphone', 'v']
+			//titanium create MyApp --verbose >>> ['MyApp', 'verbose']
+			//titanium create MyApp -d /Users/kevin -v --sdk /dev/ti-1.6 >>> ['MyApp', {d:'/Users/kevin'}, 'v', {sdk:'/dev/ti-1.6'}]
 				
-		//logger - a logging object which prints colorized log messages and will skip debug messages if -v is not present. Usage:
-		//logger.info('regular text');
-		//logger.error('red scary text');
-		//logger.warn('yellow warning text');
-		//logger.debug('blue text you only see when -v or --verbose is passed in');	
-	};
+			//logger - a logging object which prints colorized log messages and will skip debug messages if -v is not present. Usage:
+			//logger.info('regular text');
+			//logger.error('red scary text');
+			//logger.warn('yellow warning text');
+			//logger.debug('blue text you only see when -v or --verbose is passed in');	
+		};
 	
 ## Adding an extension command
 
