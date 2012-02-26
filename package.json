@@ -9,11 +9,16 @@
         "progress": ">= 0.0.4",
         "path": ">= 0.4.9",
         "xml2json": ">= 0.2.4",
-        "http-get": ">= 0.3.1"
+        "http-get": ">= 0.3.1",
+		"colors": ">=0",
+		"async": ">=0",
+		"pretty-data": ">=0",
+		"wrench": ">=1"
     },
     "repository": {
         "type": "git",
         "url": "git://github.com/appcelerator-titans/titanium_cli.git"
     },
+	"bin": { "titanium": "./lib/titanium" },
     "main": "index"
 }

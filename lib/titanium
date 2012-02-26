@@ -3,28 +3,72 @@
 /**
  * Dependencies
  */
+var config = require('./support/config').getConfig(),
+	colors = require('colors'),
+	commands = require('./commands'),
+	support = require('./support');
 
-var p = require('commander'),
-	commands = require('./commands');
-
-var conf = require('./configure');
-
-if (p.configure) {
-	module.exports = conf;
+function commandHelp(_command) {	
+	//help for specific command
+	if (_command) {
+		var cmd = commands[_command];
+		cmd.help();
+		console.log('');
+	}
+	else {
+		console.log('\n********************************'.magenta);
+		console.log('* Titanium Mobile CLI (v0.0.2) *'.magenta);
+		console.log('********************************\n'.magenta);
+		console.log('Run "titanium help [command]" for usage information...\n');
+		support.printAligned('help', 'Print this command listing');
+		for (var command in commands) {
+			support.printAligned(command, commands[command].description);
+		}
+		console.log('');
+	}
 }
 
-p.version('0.0.2').usage('This is default stuff').option('-v, --verbose [value]', 'display all logs');
-
-conf.propsLoaded(function() {
-	p.command('run')
-	 .description('Run a project on simulator/emulator')
-	 .option('-p, --platform <platform>','the platform to target, one of "iphone", "ipad", "android"')
-	 .option('-d, --directory [directory]','the project directory to use, default to current directory')
-	 .action(require('./command_run').execute);
-
-	p.command('clean')
-	 .description('Clean your project dir')
-	 .option('-i, --ignore <platform>','dont clean for this platform, one of "iphone", "ipad", "android"')
-	 .action(require('./command_clean').execute);
-	 p.parse(process.argv);
-});
+//process input
+if (process.argv.length < 3 || process.argv[2] === 'help') {
+	commandHelp(process.argv[3]);
+}
+else {
+	var command = process.argv[2],
+		args = [],
+		verbose = false; //look for this one to initialize logger
+	for (var i = 3, l = process.argv.length; i < l; ) {
+		var tkn = process.argv[i];
+		if (tkn.indexOf('-') === 0) {
+			var opt = tkn.replace(/\-/g,'');
+			if (opt === 'v' || opt === 'verbose') {
+				verbose = true;
+			}
+			//can be either a value or just a flag
+			//should support "titanium run --verbose" or "titanium run -p iphone"
+			if (process.argv[i+1] && process.argv[i+1].indexOf('-') === -1) {
+				var arg = {};
+				arg[opt] = process.argv[i+1];
+				args.push(arg);
+				i+=2;
+			}
+			else {
+				args.push(opt);
+				i++;
+			}
+		}
+		else {
+			//indicates a "sub command", like titanium run iphone or similar
+			args.push(tkn);
+			i++;
+		}
+	}
+	
+	
+	
+	var logger = new support.Logger(verbose);
+	logger.debug('attempting to run command: '+command);
+	logger.debug('config is:\n'+support.printObject(config));
+	logger.debug('args are:\n'+support.printObject(args));
+	
+	commands[command].execute(config,args,logger);
+}
