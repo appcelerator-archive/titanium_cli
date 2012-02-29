@@ -13,7 +13,8 @@
 		"colors": ">=0",
 		"async": ">=0",
 		"pretty-data": ">=0",
-		"wrench": ">=1"
+		"wrench": ">=1",
+        "exec-sync": ">=0.1.0"
     },
     "repository": {
         "type": "git",
