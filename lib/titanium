@@ -66,7 +66,7 @@ else {
 	
 	var logger = new support.Logger(verbose);
 	logger.debug('attempting to run command: '+command);
-	logger.debug('config is:\n'+support.printObject(config));
+	//logger.debug('config is:\n'+support.printObject(config));
 	logger.debug('args are:\n'+support.printObject(args));
 	
 	commands[command].execute(args,logger);
