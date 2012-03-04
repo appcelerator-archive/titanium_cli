@@ -28,13 +28,18 @@ Install all dependencies for the CLI by running `npm install` at the top level p
 * Require that file into the commands object created in `lib/commands/index.js` - this is required by the main CLI script
 * Implement a command module with the following interface:
 
-		exports.description = 'A string which describes your command'.
-		exports.help = function() {
-			//print text to the console explaining how your command works.  See the "clean" command for example.
+		exports.doc = {
+			command: 'titanium clean',  //your command 
+			description: 'Clean the project build directories', //description of what your command does
+			usage: 'titanium clean [ios, android]', //sample usage
+			options: {  //options
+				'-v, --verbose': 'Verbose logging output',
+				'-p, --path': 'Project path to clean - defaults to current working directory'
+			}
 		};
-		exports.execute = function(config,args,logger) {
+
+		exports.execute = function(args,logger) {
 			//execute your command.  The main driver script will call your function with:
-			//config: the global configuration object for the user - should eventually be created by "titanium configure"
 		
 			//args: the command line arguments passed to the script.  Examples:
 			//titanium run iphone >>> ['iphone']
