@@ -5,6 +5,7 @@
  */
 var colors = require('colors'),
 	commands = require('./commands'),
+	program = require('commander'),
 	support = require('./support');
 
 function commandHelp(_command) {	
@@ -35,39 +36,52 @@ else {
 	var command = process.argv[2],
 		args = [],
 		verbose = false; //look for this one to initialize logger
-	for (var i = 3, l = process.argv.length; i < l; ) {
-		var tkn = process.argv[i];
-		if (tkn.indexOf('-') === 0) {
-			var opt = tkn.replace(/\-/g,'');
-			if (opt === 'v' || opt === 'verbose') {
-				verbose = true;
-			}
-			//can be either a value or just a flag
-			//should support "titanium run --verbose" or "titanium run -p iphone"
-			if (process.argv[i+1] && process.argv[i+1].indexOf('-') === -1) {
-				var arg = {};
-				arg[opt] = process.argv[i+1];
-				args.push(arg);
-				i+=2;
+		
+	if (command === 'create') {
+		var opts = commands[command].doc.options;
+		for (var i = 0, len = opts.length; i < len; i++) {
+			program.option(opts[i][0], opts[i][1], opts[i][2], opts[i][3]);
+		}
+		program.parse(process.argv);
+		program.args.shift();
+		
+		var logger = new support.Logger(verbose);
+		logger.debug('attempting to run command: '+command);
+		logger.debug('args are:\n'+support.printObject(args));
+		commands[command].execute(program.args,program,logger);
+	} else {	
+		for (var i = 3, l = process.argv.length; i < l; ) {
+			var tkn = process.argv[i];
+			if (tkn.indexOf('-') === 0) {
+				var opt = tkn.replace(/\-/g,'');
+				if (opt === 'v' || opt === 'verbose') {
+					verbose = true;
+				}
+				//can be either a value or just a flag
+				//should support "titanium run --verbose" or "titanium run -p iphone"
+				if (process.argv[i+1] && process.argv[i+1].indexOf('-') === -1) {
+					var arg = {};
+					arg[opt] = process.argv[i+1];
+					args.push(arg);
+					i+=2;
+				}
+				else {
+					args.push(opt);
+					i++;
+				}
 			}
 			else {
-				args.push(opt);
+				//indicates a "sub command", like titanium run iphone or similar
+				args.push(tkn);
 				i++;
 			}
 		}
-		else {
-			//indicates a "sub command", like titanium run iphone or similar
-			args.push(tkn);
-			i++;
-		}
+		
+		var logger = new support.Logger(verbose);
+		logger.debug('attempting to run command: '+command);
+		//logger.debug('config is:\n'+support.printObject(config));
+		logger.debug('args are:\n'+support.printObject(args));
+
+		commands[command].execute(args,logger);
 	}
-	
-	
-	
-	var logger = new support.Logger(verbose);
-	logger.debug('attempting to run command: '+command);
-	//logger.debug('config is:\n'+support.printObject(config));
-	logger.debug('args are:\n'+support.printObject(args));
-	
-	commands[command].execute(args,logger);
 }
