@@ -37,13 +37,14 @@ else {
 		args = [],
 		verbose = false; //look for this one to initialize logger
 		
-	if (command === 'create') {
+	if (command === 'create' || command === 'configure' || command === 'clean') {
 		var opts = commands[command].doc.options;
 		for (var i = 0, len = opts.length; i < len; i++) {
 			program.option(opts[i][0], opts[i][1], opts[i][2], opts[i][3]);
 		}
 		program.parse(process.argv);
 		program.args.shift();
+		verbose = program.verbose;
 		
 		var logger = new support.Logger(verbose);
 		logger.debug('attempting to run command: '+command);
