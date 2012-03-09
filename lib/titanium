@@ -37,7 +37,7 @@ else {
 		args = [],
 		verbose = false; //look for this one to initialize logger
 		
-	if (command === 'create' || command === 'configure' || command === 'clean') {
+	if (command !== 'run') {
 		var opts = commands[command].doc.options;
 		for (var i = 0, len = opts.length; i < len; i++) {
 			program.option(opts[i][0], opts[i][1], opts[i][2], opts[i][3]);
