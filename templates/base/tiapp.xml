@@ -9,7 +9,7 @@
     </deployment-targets>
     <sdk-version>{{sdk}}</sdk-version>
     <id>{{appid}}</id>
-    <name>{{name}}</name>
+    <name>{{appname}}</name>
     <version>1.0</version>
     <publisher>{{publisher}}</publisher>
     <url>{{url}}</url>
