@@ -14,7 +14,7 @@
     <publisher>{{publisher}}</publisher>
     <url>{{url}}</url>
     <description>{{desc}}</description>
-    <copyright>2012 by {{publisher}}</copyright>
+    <copyright>{{copyright}}</copyright>
     <icon>{{image}}</icon>
     <persistent-wifi>false</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
