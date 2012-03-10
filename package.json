@@ -4,6 +4,9 @@
     "version": "0.0.2", 
     "homepage": "https://github.com/appcelerator-titans/titanium_cli",
     "author": "Appcelerator Dev Relations <community@appcelerator.com>", 
+    "engines": {
+        "node": ">= 0.6"
+    },
     "dependencies": {
         "commander": ">= 0.5.2",
         "progress": ">= 0.0.4",
@@ -15,12 +18,12 @@
 		"wrench": ">=1",
         "exec-sync": ">=0.1.0",
         "node-uuid": ">=0",
-        "mu": ">=0.5.2"
+        "mu2": ">=0.5.8"
     },
     "repository": {
         "type": "git",
         "url": "git://github.com/appcelerator-titans/titanium_cli.git"
     },
-	"bin": { "titanium": "./lib/titanium" },
+    "bin": { "titanium": "./lib/titanium" },
     "main": "index"
 }
