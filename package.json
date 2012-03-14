@@ -9,6 +9,7 @@
     },
     "dependencies": {
         "commander": ">= 0.5.2",
+		"prompt": "0.1.12",
         "progress": ">= 0.0.4",
         "path": ">= 0.4.9",
         "http-get": ">= 0.3.1",
