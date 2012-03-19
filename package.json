@@ -20,7 +20,8 @@
         "exec-sync": ">=0.1.0",
         "node-uuid": ">=0",
         "mu2": ">=0.5.8",
-        "xml2js": ">=0"
+        "xml2js": ">=0",
+        "path-complete": ">=0.1.3"
     },
     "repository": {
         "type": "git",
