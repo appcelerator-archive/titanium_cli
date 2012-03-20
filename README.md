@@ -31,21 +31,36 @@ Install all dependencies for the CLI by running `npm install` at the top level p
 		exports.doc = {
 			command: 'titanium clean',  //your command 
 			description: 'Clean the project build directories', //description of what your command does
-			usage: 'titanium clean [ios, android]', //sample usage
-			options: {  //options
-				'-v, --verbose': 'Verbose logging output',
-				'-p, --path': 'Project path to clean - defaults to current working directory'
-			}
+			usage: 'titanium clean [ios,android,mobileweb] [OPTIONS]' //sample usage
 		};
 
-		exports.execute = function(args,logger) {
+		exports.getOptions = function() {
+			return [
+				['-p, --path <path>', 'Project path to clean - defaults to current working directory', process.cwd()],
+				['-v, --verbose', 'Verbose logging output']
+			];
+		};
+
+		exports.execute = function(args,options,logger) {
 			//execute your command.  The main driver script will call your function with:
 		
-			//args: the command line arguments passed to the script.  Examples:
-			//titanium run iphone >>> ['iphone']
-			//titanium run iphone -v >>> ['iphone', 'v']
-			//titanium create MyApp --verbose >>> ['MyApp', 'verbose']
-			//titanium create MyApp -d /Users/kevin -v --sdk /dev/ti-1.6 >>> ['MyApp', {d:'/Users/kevin'}, 'v', {sdk:'/dev/ti-1.6'}]
+			// args & options: the command line arguments passed to the script.  Examples:
+			// titanium run iphone
+			//     args: ['iphone']
+			//     options: {}
+			// titanium run iphone -v 
+			//     args: ['iphone']
+			//     options: { 'verbose': true }
+			// titanium create MyApp --verbose 
+			//     args: ['MyApp']
+			//     options: { 'verbose': true }
+			// titanium create MyApp -p /Users/kevin -v --sdk /dev/ti-1.6 
+			//     args: ['MyApp']
+			//     options: { 
+			//         'path': '/Users/kevin',
+			//         'verbose': true,
+			//         'sdk': '/dev/ti-1.6' 
+		    //     }
 				
 			//logger - a logging object which prints colorized log messages and will skip debug messages if -v is not present. Usage:
 			//logger.info('regular text');
@@ -70,3 +85,7 @@ Tests for the Titanium CLI are implemented with [nodeunit](https://github.com/ca
 ## Installing your local version of the binary
 
 Run `npm install -g .` at the top level directory to have npm install the `titanium` binary command on your system path.
+
+## Feature requests, bugs, comments...
+
+Log them on the project's [Issues page](https://github.com/appcelerator-titans/titanium_cli/issues).
