@@ -44,23 +44,24 @@ Install all dependencies for the CLI by running `npm install` at the top level p
 		exports.execute = function(args,options,logger) {
 			//execute your command.  The main driver script will call your function with:
 		
-			// args & options: the command line arguments passed to the script.  Examples:
-			// titanium run iphone
-			//     args: ['iphone']
-			//     options: {}
-			// titanium run iphone -v 
-			//     args: ['iphone']
-			//     options: { 'verbose': true }
-			// titanium create MyApp --verbose 
-			//     args: ['MyApp']
-			//     options: { 'verbose': true }
-			// titanium create MyApp -p /Users/kevin -v --sdk /dev/ti-1.6 
-			//     args: ['MyApp']
-			//     options: { 
-			//         'path': '/Users/kevin',
-			//         'verbose': true,
-			//         'sdk': '/dev/ti-1.6' 
-		    //     }
+			// args & options: the command line arguments passed to the script.  
+			// Examples:
+			//     titanium run iphone
+			//         args: ['iphone']
+			//         options: {}
+			//     titanium run iphone -v 
+			//         args: ['iphone']
+			//         options: { 'verbose': true }
+			//     titanium create MyApp --verbose 
+			//         args: ['MyApp']
+			//         options: { 'verbose': true }
+			//     titanium create MyApp -p /Users/kevin -v --sdk /dev/ti-1.6 
+			//         args: ['MyApp']
+			//         options: { 
+			//             'path': '/Users/kevin',
+			//             'verbose': true,
+			//             'sdk': '/dev/ti-1.6' 
+		    //         }
 				
 			//logger - a logging object which prints colorized log messages and will skip debug messages if -v is not present. Usage:
 			//logger.info('regular text');
