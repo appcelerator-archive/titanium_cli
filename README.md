@@ -28,6 +28,7 @@ Install all dependencies for the CLI by running `npm install` at the top level p
 * Require that file into the commands object created in `lib/commands/index.js` - this is required by the main CLI script
 * Implement a command module with the following interface:
 
+		```javascript
 		exports.doc = {
 			command: 'titanium clean',  //your command 
 			description: 'Clean the project build directories', //description of what your command does
@@ -69,6 +70,7 @@ Install all dependencies for the CLI by running `npm install` at the top level p
 			//logger.warn('yellow warning text');
 			//logger.debug('blue text you only see when -v or --verbose is passed in');	
 		};
+		```
 	
 ## Adding an extension command
 
