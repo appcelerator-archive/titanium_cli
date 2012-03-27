@@ -9,6 +9,33 @@ var colors = require('colors'),
 	commands = require('./commands'),
 	VERSION = '0.1.0';
 
+// program
+// 	.version(VERSION)
+// 	.description('* Titanium Mobile CLI (v' + VERSION + ') *')
+// 	.usage('COMMAND [OPTIONS]')
+// 	.option('-v, --verbose', 'Verbose logging output');
+
+// program
+// 	.command('clean')
+// 	.usage('titanium clean [OPTIONS]')
+// 	.description('clean shit up')
+// 	.option('-f, --fun <fun>', 'a fun option')
+// 	.action(function(e){
+// 		console.log('cleaning up');
+// 	});
+
+// program.on('--help', function(){
+//   console.log('  Examples:');
+//   console.log('');
+//   console.log('    $ custom-help --help');
+//   console.log('    $ custom-help -h');
+//   console.log('');
+// });
+
+// program.parse(process.argv);
+// console.log(program);
+// process.exit();
+
 function commandHelp(_command) {	
 	//help for specific command
 	if (_command) {
