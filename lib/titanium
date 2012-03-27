@@ -6,7 +6,8 @@
 var colors = require('colors'),
     program = require('commander'),
 	support = require('./support'),
-	commands = require('./commands');
+	commands = require('./commands'),
+	VERSION = '0.1.0';
 
 function commandHelp(_command) {	
 	//help for specific command
@@ -34,19 +35,19 @@ if (process.argv.length < 3 || process.argv[2] === 'help') {
 }
 else {
 	var command = process.argv[2],
-		args = [],
-		verbose = false,
 		opts = commands[command].getOptions();
 
-	for (var i = 0, len = opts.length; i < len; i++) {
-		program.option(opts[i][0], opts[i][1], opts[i][2], opts[i][3]);
-	}
+	// Parse command-specific arguments
+	opts.forEach(function(opt) {
+		program.option(opt[0], opt[1], opt[2], opt[3]);
+	});
 	program.parse(process.argv);
 	program.args.shift();
-	verbose = program.verbose;
-	
-	var logger = new support.Logger(verbose);
-	logger.debug('attempting to run command: '+command);
-	logger.debug('args are:\n'+support.printObject(args));
-	commands[command].execute(program.args,program,logger);
+
+	// Launch the command
+	commands[command].execute(
+		program.args, 
+		program,      
+		new support.Logger(program.verbose || false)
+	);
 }
