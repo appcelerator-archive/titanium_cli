@@ -7,7 +7,7 @@ var label = Ti.UI.createLabel({
 	text: 'Hello, World!',
 	color: '#000',
 	font: {
-		fontSize: '32',
+		fontSize: 32,
 		fontWeight: 'bold'
 	}
 });
