@@ -66,7 +66,7 @@ if (process.argv.length < 3 || process.argv[2] === 'help') {
 }
 else {
 	var command = process.argv[2],
-		opts = commands[command].getOptions();
+		opts = commands[command].doc.options;
 
 	// Parse command-specific arguments
 	opts.forEach(function(opt) {
