@@ -7,33 +7,37 @@ var colors = require('colors'),
     program = require('commander'),
 	support = require('./support'),
 	commands = require('./commands'),
-	VERSION = '0.1.0';
+	constants = require('./support/constants');
 
 // program
-// 	.version(VERSION)
-// 	.description('* Titanium Mobile CLI (v' + VERSION + ') *')
+// 	.version(constants.TITANIUM_CLI_VERSION)
+// 	.description('* Titanium Mobile CLI (v' + constants.TITANIUM_CLI_VERSION + ') *')
 // 	.usage('COMMAND [OPTIONS]')
 // 	.option('-v, --verbose', 'Verbose logging output');
+// 	// .on('--help', function() {
+// 	// 	console.log('do help');
+// 	// });
 
 // program
 // 	.command('clean')
-// 	.usage('titanium clean [OPTIONS]')
+// 	.usage('\r  Usage: titanium clean [OPTIONS]')
 // 	.description('clean shit up')
 // 	.option('-f, --fun <fun>', 'a fun option')
 // 	.action(function(e){
 // 		console.log('cleaning up');
 // 	});
 
-// program.on('--help', function(){
-//   console.log('  Examples:');
-//   console.log('');
-//   console.log('    $ custom-help --help');
-//   console.log('    $ custom-help -h');
-//   console.log('');
-// });
+// program
+// 	.command('run')
+// 	.usage('titanium run [TARGETS] [OPTIONS]')
+// 	.description('run a titanium app')
+// 	.option('-x, --xerox <xerox>', 'i dont know why i typed xerox')
+// 	.option('-y, --yelp', 'the yelp option')
+// 	.action(function(e){
+// 		console.log('cleaning up');
+// 	});
 
 // program.parse(process.argv);
-// console.log(program);
 // process.exit();
 
 function commandHelp(_command) {	
@@ -45,7 +49,7 @@ function commandHelp(_command) {
 	}
 	else {
 		console.log('\n********************************'.magenta);
-		console.log('* Titanium Mobile CLI (v0.0.2) *'.magenta);
+		console.log(('* Titanium Mobile CLI (v' + constants.TITANIUM_CLI_VERSION+ ') *').magenta);
 		console.log('********************************\n'.magenta);
 		console.log('Run "titanium help [command]" for usage information...\n');
 		support.printAligned('help', 'Print this command listing');
