@@ -9,37 +9,6 @@ var colors = require('colors'),
 	commands = require('./commands'),
 	constants = require('./support/constants');
 
-// program
-// 	.version(constants.TITANIUM_CLI_VERSION)
-// 	.description('* Titanium Mobile CLI (v' + constants.TITANIUM_CLI_VERSION + ') *')
-// 	.usage('COMMAND [OPTIONS]')
-// 	.option('-v, --verbose', 'Verbose logging output');
-// 	// .on('--help', function() {
-// 	// 	console.log('do help');
-// 	// });
-
-// program
-// 	.command('clean')
-// 	.usage('\r  Usage: titanium clean [OPTIONS]')
-// 	.description('clean shit up')
-// 	.option('-f, --fun <fun>', 'a fun option')
-// 	.action(function(e){
-// 		console.log('cleaning up');
-// 	});
-
-// program
-// 	.command('run')
-// 	.usage('titanium run [TARGETS] [OPTIONS]')
-// 	.description('run a titanium app')
-// 	.option('-x, --xerox <xerox>', 'i dont know why i typed xerox')
-// 	.option('-y, --yelp', 'the yelp option')
-// 	.action(function(e){
-// 		console.log('cleaning up');
-// 	});
-
-// program.parse(process.argv);
-// process.exit();
-
 function commandHelp(_command) {	
 	//help for specific command
 	if (_command) {
