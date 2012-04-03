@@ -29,20 +29,20 @@ Install all dependencies for the CLI by running `npm install` at the top level p
 * Implement a command module with the following interface:
 
 ```javascript
+var logger;
+
 exports.doc = {
-	command: 'titanium clean',  //your command 
-	description: 'Clean the project build directories', //description of what your command does
-	usage: 'titanium clean [ios,android,mobileweb] [OPTIONS]' //sample usage
-};
-
-exports.getOptions = function() {
-	return [
-		['-p, --path <path>', 'Project path to clean - defaults to current working directory', process.cwd()],
+	command: 'titanium clean', 
+	description: 'Clean the project build directories', 
+	usage: 'titanium clean [ios,android,mobileweb] [OPTIONS]', 
+	options: [
+		['-p, --path <path>', 'Project path to clean - defaults to current working directory'],
 		['-v, --verbose', 'Verbose logging output']
-	];
+	]
 };
 
-exports.execute = function(args,options,logger) {
+exports.execute = function(args,options,_logger) {
+	logger = _logger;
 	//execute your command.  The main driver script will call your function with:
 
 	// args & options: the command line arguments passed to the script.  
