@@ -21,7 +21,7 @@
         "node-uuid": ">=0",
         "mu2": ">=0.5.8",
         "xml2js": ">=0",
-        "path-complete": ">=0.1.10"
+        "path-complete": ">=0.1.11"
     },
     "repository": {
         "type": "git",

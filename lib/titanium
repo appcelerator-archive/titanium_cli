@@ -5,9 +5,13 @@
  */
 var colors = require('colors'),
     program = require('commander'),
+    path = require('path'),
+    async = require('async'),
 	support = require('./support'),
 	commands = require('./commands'),
-	constants = require('./support/constants');
+	constants = require('./support/constants'),
+	validate = require('./support/validate'),
+	config = require('./support/config');
 
 function commandHelp(_command) {	
 	//help for specific command
@@ -30,24 +34,60 @@ function commandHelp(_command) {
 }
 
 //process input
-if (process.argv.length < 3 || process.argv[2] === 'help') {
-	commandHelp(process.argv[3]);
-}
-else {
-	var command = process.argv[2],
-		opts = commands[command].doc.options;
+var sdkRoot = config.getSdkRoot();
+var configFile = path.join(sdkRoot, constants.TITANIUM_CONFIG_FILE);
+var configFileExists = path.existsSync(configFile);
+var cmd = process.argv[2];
 
-	// Parse command-specific arguments
-	opts.forEach(function(opt) {
+if (process.argv.length < 3) { 
+	if (!configFileExists) {
+		commands['configure'].execute([],{},new support.Logger(false));
+	} else {
+		commandHelp();
+	}
+} else if (cmd === 'help') {
+	commandHelp(process.argv[3]);
+} else {
+	var command = commands[cmd],
+		logger;
+
+	// Validate the command
+	if (!command) {
+		// TODO: check levenshtein distance from known commands (Issue #029)
+		support.die('Invalid command "' + cmd + '"');
+	}
+
+	// Parse command line options
+	command.doc.options.forEach(function(opt) {
 		program.option(opt[0], opt[1], opt[2], opt[3]);
 	});
+	program.option('-q, --quiet', 'No logging output, with the exception of errors');
+	program.option('-v, --verbose', 'Verbose logging output');
 	program.parse(process.argv);
 	program.args.shift();
-
-	// Launch the command
-	commands[command].execute(
-		program.args, 
-		program,      
-		new support.Logger(program.verbose || false)
-	);
+	logger = new support.Logger(program.verbose || false, program.quiet || false);
+	
+	async.series([
+		// Run configure if it is necessary
+		function(callback) {
+			if (command.needsConfig && !configFileExists) {
+				logger.warn('Titanium has not yet been configured. Configuring now...');
+				commands['configure'].execute([],{},new support.Logger(false), function(err) {
+					callback(err);
+				});
+			} else {
+				callback();
+			}
+		},
+		// Parse and execute command
+		function(callback) {
+			logger.debug('Running command "' + cmd + '"...');
+			command.execute(program.args, program, logger);
+			callback();
+		}
+	],
+	function(err, result) {
+		if (err) { support.die(err); }
+	});
+	
 }
