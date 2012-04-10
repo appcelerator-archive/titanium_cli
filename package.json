@@ -17,7 +17,6 @@
 		"async": ">=0",
 		"pretty-data": ">=0",
 		"wrench": ">=1",
-        "exec-sync": ">=0.1.0",
         "node-uuid": ">=0",
         "mu2": ">=0.5.8",
         "xml2js": ">=0",
