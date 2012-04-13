@@ -1,7 +1,7 @@
 { 
     "name": "titanium", 
     "description": "Appcelerator Titanium CLI package", 
-    "version": "0.0.12", 
+    "version": "0.0.13", 
     "homepage": "https://github.com/appcelerator-titans/titanium_cli",
     "author": "Appcelerator Dev Relations <community@appcelerator.com>", 
     "engines": {
