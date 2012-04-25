@@ -1,7 +1,7 @@
 { 
     "name": "titanium", 
     "description": "Appcelerator Titanium CLI package", 
-    "version": "0.0.13", 
+    "version": "0.0.24", 
     "homepage": "https://github.com/appcelerator-titans/titanium_cli",
     "author": "Appcelerator Dev Relations <community@appcelerator.com>", 
     "engines": {
@@ -20,7 +20,8 @@
         "node-uuid": ">=0",
         "mu2": ">=0.5.8",
         "xml2js": ">=0",
-        "path-complete": ">=0.1.11"
+        "path-complete": ">=0.1.11",
+        "pkginfo": ">=0.2.3"
     },
     "repository": {
         "type": "git",
