@@ -7,11 +7,16 @@ var colors = require('colors'),
     program = require('commander'),
     path = require('path'),
     async = require('async'),
+    pkginfo = require('pkginfo')(module),
 	support = require('./support'),
 	commands = require('./commands'),
 	constants = require('./support/constants'),
 	validate = require('./support/validate'),
 	config = require('./support/config');
+
+console.log('*********************************************************'.red);
+console.log('********** EXPERIMENTAL AND UNDER CONSTRUCTION **********'.red);
+console.log('*********************************************************'.red);
 
 function commandHelp(_command) {	
 	//help for specific command
@@ -21,9 +26,9 @@ function commandHelp(_command) {
 		console.log('');
 	}
 	else {
-		console.log('\n********************************'.magenta);
-		console.log(('* Titanium Mobile CLI (v' + constants.TITANIUM_CLI_VERSION+ ') *').magenta);
-		console.log('********************************\n'.magenta);
+		console.log('\n*********************************'.magenta);
+		console.log(('* Titanium Mobile CLI (v' + module.exports.version + ') *').magenta);
+		console.log('*********************************\n'.magenta);
 		console.log('Run "titanium help [command]" for usage information...\n');
 		support.printAligned('help', 'Print this command listing');
 		for (var command in commands) {
