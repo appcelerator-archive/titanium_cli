@@ -41,7 +41,7 @@ function commandHelp(_command) {
 //process input
 var sdkRoot = config.getSdkRoot();
 var configFile = path.join(sdkRoot, constants.TITANIUM_CONFIG_FILE);
-var configFileExists = path.existsSync(configFile);
+var configFileExists = fs.existsSync(configFile);
 var cmd = process.argv[2];
 
 if (process.argv.length < 3) { 
